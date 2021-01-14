@@ -1,3 +1,48 @@
 <div>
-  
+  <form nz-form [formGroup]="formModel" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="title">标题</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input name="title" type="text" id="title" formControlName="title">
+      </nz-form-control>
+    </nz-form-item >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="title">内容</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <simplemde #simplemde  formControlName="content" [disabled]="false"></simplemde>
+      </nz-form-control>
+    </nz-form-item >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="upload">上传图片</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <div class="clearfix">
+          <nz-upload
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            nzListType="picture-card"
+            nzName="image"
+            [nzBeforeUpload]="beforeUpload"
+            (nzChange)="handleChange($event)"
+          >
+          <ng-container *ngIf="!imgUrl">
+            <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+            <div class="ant-upload-text">Upload</div>
+          </ng-container>
+          <img *ngIf="imgUrl" [src]="imgUrl" style="width: 100%" />
+          </nz-upload>
+          <input type="hidden" formControlName="image">
+        </div>
+      </nz-form-control>
+    </nz-form-item >
+    <nz-form-item>
+      <nz-form-label></nz-form-label>
+      <nz-form-control>
+        <button nz-button class="" [nzType]="'primary'">提交</button>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
 </div>
+
+
+
+

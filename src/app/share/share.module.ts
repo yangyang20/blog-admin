@@ -3,10 +3,15 @@ import { CommonModule } from '@angular/common';
 import {IconsProviderModule} from '../icons-provider.module';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import {SimplemdeModule} from "ngx-simplemde";
 
 @NgModule({
   declarations: [],
@@ -19,6 +24,12 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     HttpClientModule,
     NzTableModule,
     NzBreadCrumbModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzUploadModule,
+    SimplemdeModule,
+    ReactiveFormsModule,
   ],
   exports:[
     CommonModule,
@@ -29,6 +40,12 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     HttpClientModule,
     NzTableModule,
     NzBreadCrumbModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzUploadModule,
+    SimplemdeModule,
+    ReactiveFormsModule,
   ]
 })
 export class ShareModule { }

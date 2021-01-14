@@ -33,9 +33,12 @@
               }
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/ngx-simplemde/index.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/simplemde-antd/dist/simplemde.min.js"
+            ]
           },
           "configurations": {
             "production": {
