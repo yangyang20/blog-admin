@@ -17,17 +17,17 @@
       <nz-form-control [nzSpan]="14">
         <div class="clearfix">
           <nz-upload
-            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            [nzAction]="uploadUrl"
             nzListType="picture-card"
             nzName="image"
-            [nzBeforeUpload]="beforeUpload"
             (nzChange)="handleChange($event)"
+            [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
           >
-          <ng-container *ngIf="!imgUrl">
+          <ng-container>
             <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
             <div class="ant-upload-text">Upload</div>
           </ng-container>
-          <img *ngIf="imgUrl" [src]="imgUrl" style="width: 100%" />
+
           </nz-upload>
           <input type="hidden" formControlName="image">
         </div>

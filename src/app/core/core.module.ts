@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ShareModule} from '../share/share.module';
 import { SimplemdeModule } from 'ngx-simplemde';
 import {ServicesModule} from "../services/services.module";
+import {httpInterceptorProviders} from "../services/ httpInterceptor";
 
 
 
@@ -17,6 +18,9 @@ import {ServicesModule} from "../services/services.module";
   exports: [
     ShareModule,
     BrowserAnimationsModule,
+  ],
+  providers:[
+    httpInterceptorProviders
   ]
 })
 export class CoreModule { }

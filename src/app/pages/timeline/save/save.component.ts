@@ -1,8 +1,12 @@
-import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import { SimplemdeComponent} from 'ngx-simplemde';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {SimplemdeComponent} from 'ngx-simplemde';
+import {FormControl, FormGroup} from '@angular/forms';
 import {NzUploadFile} from "ng-zorro-antd/upload";
 import {UtilsService} from "../../../services/utils.service";
+import {API_CONFIG} from "../../../services/services.module";
+import {ResponseCode, ResponseData} from "../../../data-type/response.type";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {TimelineService} from "../../../services/timeline.service";
 
 
 @Component({
@@ -14,10 +18,10 @@ export class SaveComponent implements OnInit{
 
   @ViewChild('simplemde', { static: true }) private  simplemde: SimplemdeComponent;
 
-  imgUrl:string=''
+
   loading:boolean=false
 
-
+  uploadUrl=''
 
   formModel = new FormGroup({
     title: new FormControl(''),
@@ -25,20 +29,24 @@ export class SaveComponent implements OnInit{
     image:new FormControl(''),
   });
 
-  constructor(private utilsService:UtilsService) { }
+  constructor(private utilsService:UtilsService,
+              @Inject(API_CONFIG)private url:string,
+              private message: NzMessageService,
+              private timelineService:TimelineService) {
+    this.uploadUrl=this.url+'/upload/upload-img'
+  }
 
   ngOnInit(): void {
     this.simplemde.setOptions('lineNumbers', true);
   }
 
   submit(){
-    console.log(this.simplemde);
-    console.log(this.formModel.value);
+    this.timelineService.timelineCreate(this.formModel.value).subscribe(res=>{
+      console.log(res);
+    })
+    // console.log(this.formModel.value);
   }
 
-  beforeUpload(){
-
-  }
 
   handleChange(info: { file: NzUploadFile }): void {
     switch (info.file.status) {
@@ -46,22 +54,23 @@ export class SaveComponent implements OnInit{
         this.loading = true;
         break;
       case 'done':
-        this.uploadImg(info.file!.originFileObj!, (img: string) => {
-          this.loading = false;
-          this.imgUrl = img;
-        });
+        this.uploadResponse(info.file.response)
+        this.loading = false;
         break;
       case 'error':
-        // this.msg.error('Network error');
+        this.message.error('没有网络');
         this.loading = false;
         break;
     }
   }
 
-  uploadImg(imgObj:object,callback:(img: string) => void){
-    console.log(imgObj);
-    this.utilsService.uploadImg(imgObj).subscribe(res=>{
-      console.log(res);
-    })
+
+  uploadResponse(response: ResponseData,){
+    if (response.code == ResponseCode.SUCCESS){
+      this.formModel.value.image =response.data
+      this.message.success(response.message)
+    }else {
+      this.message.error(response.message)
+    }
   }
 }

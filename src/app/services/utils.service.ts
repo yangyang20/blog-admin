@@ -12,7 +12,7 @@ export class UtilsService {
 
   uploadImg(file){
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('image', file);
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -21,7 +21,7 @@ export class UtilsService {
       body:formData,
     };
 
-   return  this.http.post(this.url+'',httpOptions).pipe(
+   return  this.http.post(this.url+'/upload/upload-img',httpOptions).pipe(
      map(res=>res)
    )
   }
