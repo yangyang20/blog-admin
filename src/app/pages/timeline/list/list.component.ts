@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Timeline} from '../../../model/timeline.type';
+import {TimelineService} from '../../../services/timeline.service';
 
 @Component({
   selector: 'app-list',
@@ -11,9 +12,13 @@ export class ListComponent implements OnInit {
   timelineList:Timeline[]=[]
 
 
-  constructor() { }
+  constructor(private timelineService:TimelineService,
+              ) { }
 
   ngOnInit(): void {
+    this.timelineService.getTimelineList().subscribe(res=>{
+
+    })
   }
 
 }

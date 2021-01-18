@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {SimplemdeComponent} from 'ngx-simplemde';
 import {FormControl, FormGroup} from '@angular/forms';
-import {NzUploadFile} from "ng-zorro-antd/upload";
-import {UtilsService} from "../../../services/utils.service";
-import {API_CONFIG} from "../../../services/services.module";
-import {ResponseCode, ResponseData} from "../../../data-type/response.type";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {TimelineService} from "../../../services/timeline.service";
+import {NzUploadFile} from 'ng-zorro-antd/upload';
+import {UtilsService} from '../../../services/utils.service';
+import {API_CONFIG} from '../../../services/services.module';
+import {ResponseCode, ResponseData} from '../../../data-type/response.type';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {TimelineService} from '../../../services/timeline.service';
 
 
 @Component({
@@ -42,7 +42,11 @@ export class SaveComponent implements OnInit{
 
   submit(){
     this.timelineService.timelineCreate(this.formModel.value).subscribe(res=>{
-      console.log(res);
+      if (res.code===ResponseCode.SUCCESS){
+        this.message.success(res.message)
+      }else {
+        this.message.error(res.message)
+      }
     })
     // console.log(this.formModel.value);
   }
