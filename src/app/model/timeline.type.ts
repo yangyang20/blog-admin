@@ -3,4 +3,5 @@ export interface Timeline {
   created:string,
   title:string,
   content:string,
+  isShow:boolean,
 }

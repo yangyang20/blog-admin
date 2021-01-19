@@ -21,8 +21,23 @@ export class TimelineService {
 
   getTimelineList(param:string=''):Observable<ResponseData>{
     const params = {params: new HttpParams({fromString:param})}
-    return this.http.get<ResponseData>(this.url+'',params).pipe(
-      map(res=>(res))
+    return this.http.get<ResponseData>(this.url+'/timeline/list ',params).pipe(
+      map(res=>{
+        let data  = res.data
+        data.forEach(item=>{
+          item.isShow = Boolean(item.isShow)
+        })
+        res.data = data
+        return res
+      }),
+
+    )
+  }
+
+  putTimelineShow(id:number,isShow:boolean):Observable<ResponseData>{
+    const params = {params: new HttpParams().set('id',String(id)).set('isShow',String(Number(isShow)))}
+    return this.http.put<ResponseData>(this.url+'/timeline/put-show',params).pipe(
+      map(res=>res)
     )
   }
 }

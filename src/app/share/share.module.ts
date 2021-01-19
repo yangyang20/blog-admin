@@ -13,6 +13,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import {SimplemdeModule} from "ngx-simplemde";
 import {NzMessageModule} from "ng-zorro-antd/message";
+import {NzSwitchModule} from 'ng-zorro-antd/switch';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import {NzMessageModule} from "ng-zorro-antd/message";
     SimplemdeModule,
     ReactiveFormsModule,
     NzMessageModule,
+    NzSwitchModule
   ],
   exports:[
     CommonModule,
@@ -48,7 +50,8 @@ import {NzMessageModule} from "ng-zorro-antd/message";
     NzUploadModule,
     SimplemdeModule,
     ReactiveFormsModule,
-    NzMessageModule
+    NzMessageModule,
+    NzSwitchModule,
   ]
 })
 export class ShareModule { }
