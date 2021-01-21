@@ -7,7 +7,8 @@ import {SaveComponent} from "./save/save.component";
 const routes: Routes = [
   {path:'',redirectTo:'list'},
   {path:'list',component:ListComponent},
-  {path:'create',component:SaveComponent}
+  {path:'create',component:SaveComponent},
+  {path:'update/:id',component:SaveComponent},
 ];
 
 @NgModule({

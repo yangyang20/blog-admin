@@ -14,6 +14,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import {SimplemdeModule} from "ngx-simplemde";
 import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzSwitchModule} from 'ng-zorro-antd/switch';
+import {NzImageModule} from 'ng-zorro-antd/image';
 
 @NgModule({
   declarations: [],
@@ -33,7 +34,8 @@ import {NzSwitchModule} from 'ng-zorro-antd/switch';
     SimplemdeModule,
     ReactiveFormsModule,
     NzMessageModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzImageModule,
   ],
   exports:[
     CommonModule,
@@ -52,6 +54,7 @@ import {NzSwitchModule} from 'ng-zorro-antd/switch';
     ReactiveFormsModule,
     NzMessageModule,
     NzSwitchModule,
+    NzImageModule,
   ]
 })
 export class ShareModule { }

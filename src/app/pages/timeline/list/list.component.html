@@ -18,7 +18,7 @@
       <td>{{data.content}}</td>
       <td><nz-switch [(ngModel)]="data.isShow" (click)="changeDataShow(data)"></nz-switch></td>
       <td>
-        <a>编辑</a>
+        <a [routerLink]="['/timeline/update',data.id]">编辑</a>
         <a>删除</a>
       </td>
     </tr>

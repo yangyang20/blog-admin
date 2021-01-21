@@ -27,7 +27,7 @@
             <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
             <div class="ant-upload-text">Upload</div>
           </ng-container>
-
+            <img *ngIf="this.formModel.value.image" [src]="this.formModel.value.image" style="width: 100%" />
           </nz-upload>
           <input type="hidden" formControlName="image">
         </div>
